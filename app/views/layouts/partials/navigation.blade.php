@@ -11,7 +11,7 @@
 				@if ($game)
 					<li>{{ link_to_route('menu_path', 'Game') }}</li>
 				@else
-					<li>{{ link_to_route('startNewGame_path', 'New Game') }}
+					<li>{{ link_to_route('selectNumberOfPlayers_path', 'New Game') }}
 				@endif
 				<li>{{ link_to_route('changelog_path', 'Changelog')}}
 			</ul>

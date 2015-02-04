@@ -9,7 +9,9 @@ use MovBizz\Turn\IncreaseRoundCounterCommand;
 use MovBizz\Turn\IncreaseMovieRoundCommand;
 use MovBizz\Turn\PayInterestCommand;
 use MovBizz\Turn\PayRunningCostsCommand;
+use MovBizz\Turn\ResetAvailablePlayersCommand;
 use MovBizz\Turn\RunRandomEventCommand;
+use MovBizz\Turn\SelectNextPlayerCommand;
 use MovBizz\Movies\MovieRepository;
 
 class TurnController extends \BaseController {
@@ -33,6 +35,12 @@ class TurnController extends \BaseController {
 	{
 		// increase the round counter
 		$this->execute(IncreaseRoundCounterCommand::class);
+
+		// reset available players
+		$this->execute(ResetAvailablePlayersCommand::class);
+
+		// select next player
+		$this->execute(SelectNextPlayerCommand::class);
 
 		// look for random events
 		$this->execute(RunRandomEventCommand::class);
@@ -81,5 +89,15 @@ class TurnController extends \BaseController {
 		$events = Session::get('events');
 		
 		return View::make('turn.summary', compact('events', 'loan','interest', 'inProductionMovies', 'inChartsMovies'));
+	}
+
+	/**
+	 * select next player
+	 * @return [type] [description]
+	 */
+	public function selectNextPlayer()
+	{
+		$this->execute(SelectNextPlayerCommand::class);
+		return Redirect::route('menu_path');
 	}
 }

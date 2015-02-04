@@ -6,13 +6,13 @@ class StartGameCommand {
 	 * Name of the player
 	 * @var [type]
 	 */
-	public $playerName;
+	public $playerNames;
 
     /**
      */
-    public function __construct($playerName)
+    public function __construct($playerNames)
     {
-    	$this->playerName = $playerName;
+    	$this->playerNames = $playerNames;
     }
 
 }

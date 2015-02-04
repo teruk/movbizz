@@ -5,10 +5,20 @@ Route::get('menu', [
 	'uses' => 'GameController@getMenu'
 	])->before('gamesession');
 
+Route::get('selectNumberOfPlayers', [
+	'as' => 'selectNumberOfPlayers_path',
+	'uses' => 'GameController@selectNumberOfPlayerForm'
+	]);
+
 /* start new game */
 Route::get('startNewGame', [
 	'as' => 'startNewGame_path',
 	'uses' => 'GameController@getStartForm'
+	]);
+
+Route::post('chooseNumberOfPlayers', [
+	'as' => 'chooseNumberOfPlayers_path',
+	'uses' => 'GameController@chooseNumberOfPlayers'
 	]);
 
 Route::post('startNewGame', [
