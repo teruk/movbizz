@@ -10,13 +10,14 @@ class MovieController extends \BaseController {
 	 */
 	public function showOverview()
 	{
-		$movies = [];
-		if (sizeof(Session::get('player.movies')) > 0) 
-		{
-			foreach (Session::get('player.movies') as $movie) {
-				if ($movie->status != 0)
+		$movies = Session::get('game.currentPlayer')->getMoviesAttribute();
+		if (sizeof($movies) > 0) {
+
+			foreach ($movies as $movie) {
+				if (!$movie->hasStatusInProduction())
 					array_push($movies, $movie);
 			}
+			
 		}
 		return View::make('movies.overview', compact('movies'));
 	}
@@ -27,8 +28,7 @@ class MovieController extends \BaseController {
 	 */
 	public function showIncomeCosts()
 	{
-		$movies = Session::get('player.movies');
-
+		$movies = Session::get('game.currentPlayer')->getMoviesAttribute();
 		return View::make('movies.finance', compact('movies'));
 	}
 }

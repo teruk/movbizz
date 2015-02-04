@@ -23,6 +23,10 @@ You can try it [here](http://movbizz.sebbmeyer.de)
 
 **All issues and pull requests should be filed on the [teruk/movbizz](http://github.com/teruk/movbizz) repository. But feel free to fork it and make your own version of the game.** 
 
+### Development notes
+
+[Gulp](http://gulpjs.com/) was used to autoprefix the /public/css/main.css file. Gulpfile.js is included.
+
 ### Licence
 
 MovBizz is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

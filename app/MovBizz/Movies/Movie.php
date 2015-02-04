@@ -260,4 +260,40 @@ class Movie extends Eloquent implements QualityInterface {
 		return round( $this->getQualityAttribute() * 0.55 + $this->getCostAttribute() * 0.275 / 3300000 + 0);
 	}
 
+	/**
+	 * returns true if movie is in production
+	 * @return boolean [description]
+	 */
+	public function hasStatusInProduction()
+	{
+		if ($this->getStatusAttribute() == 0)
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * returns true if movie is in charts
+	 * @return boolean [description]
+	 */
+	public function hasStatusInCharts()
+	{
+		if ($this->getStatusAttribute() == 1)
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * return true if movie is in archive
+	 * @return boolean [description]
+	 */
+	public function hasStatusInArchive()
+	{
+		if ($this->getStatusAttribute() == 2)
+			return true;
+
+		return false;
+	}
+
 }

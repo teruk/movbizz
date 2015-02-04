@@ -16,17 +16,17 @@ class StartProductionCommandHandler implements CommandHandler {
     {
         $production = Session::get('production');
 
-        Session::set('player.money', ( 
-            Session::get('player.money') - 
-            $production['actor']['wage'] -
-            $production['director']['wage'] -
-            $production['location']['rent']
-            ));
+        $currentPlayer = Session::get('game.currentPlayer');
 
+        // player pays money for production
+        $currentPlayer->payMoney( ($production['actor']['wage'] + $production['director']['wage'] + $production['location']['rent']) );
+
+        // create movie
         $movie = new Movie();
         $movie->setAttributes($production);
 
-        Session::push('player.movies', $movie);
+        // add movie to player movies
+        $currentPlayer->addMovie($movie);
 
     	Session::forget('production');
         

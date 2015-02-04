@@ -17,13 +17,14 @@ class AdvertiseMovieCommandHandler implements CommandHandler {
     	$radioPopularityPerAd = 0.5;
     	$posterPopularityPerAd = 0.25;
 
+        $currentPlayer = Session::get('game.currentPlayer');
     	$movie = Session::get('advertisement.movie');
 
     	$costs = (Session::get('advertisement.tv') * $command->tv 
     				+ Session::get('advertisement.radio') * $command->radio 
     				+ Session::get('advertisement.poster') * $command->poster);
 
-    	if ($costs > Session::get('player.money'))
+    	if ($costs > $currentPlayer->getMoneyAttribute())
     		return false;
 
     	$popularity = ($tvPopularityPerAd * $command->tv 
@@ -33,17 +34,16 @@ class AdvertiseMovieCommandHandler implements CommandHandler {
     	$movie->increasePopularity($popularity);
     	$movie->addCosts($costs);
 
-    	Session::set('player.money', (Session::get('player.money') - $costs));
+        $currentPlayer->payMoney($costs);
 
     	// it's only allowed to advertise a movie once per round
-    	if (Session::has('advertisement.advertisedMovies'))
-    	{
+    	if (Session::has('advertisement.advertisedMovies')) {
     		$advertisedMovies = Session::get('advertisement.advertisedMovies');
     		array_push($advertisedMovies, $movie);
     		Session::set('advertisement.advertisedMovies', $advertisedMovies);
-    	}
-    	else 
+    	} else  {
     		Session::set('advertisement.advertisedMovies', [$movie]);
+        }
 
     	return true;
     }

@@ -71,19 +71,20 @@ class MovieRepository {
 
 	/**
 	 * find a movie by it's number of rounds
+	 * TODO find a better way for identification
 	 * @param  [type] $round [description]
 	 * @return [type]        [description]
 	 */
 	public function findByRound($round)
 	{
-		$allMovies = Session::get('player.movies');
+		$allMovies = Session::get('game.currentPlayer')->getMoviesAttribute();
 		$movie = null;
 		foreach ($allMovies as $m) {
 			if ($m->round == $round)
 				$movie = $m;
 		}
 
-		return $m;
+		return $movie;
 	}
 
 	/**
@@ -123,13 +124,24 @@ class MovieRepository {
 	 */
 	public function getNotAdvertisedMovies()
 	{
-		if (!array_key_exists('advertisedMovies', Session::get('advertisement')))
-			return Session::get('player.movies');
+		$currentPlayerMovies = Session::get('game.currentPlayer')->getMoviesAttribute();
+		$availableMovies = [];
 
-		$allMovies = Session::get('player.movies');
+		// filter all movie which are not archived yet
+		foreach ($currentPlayerMovies as $movie) {
+
+			if (!$movie->hasStatusInArchive())
+				array_push($availableMovies, $movie);
+
+		}
+
+		if (!array_key_exists('advertisedMovies', Session::get('advertisement')))
+			return $availableMovies;
+
 		$notAdvertisedMovies = [];
 		$advertisedMovies = Session::get('advertisement.advertisedMovies');
-		foreach ($allMovies as $movie) {
+		foreach ($availableMovies as $movie) {
+
 			if (!in_array($movie, $advertisedMovies))
 				array_push($notAdvertisedMovies, $movie);
 

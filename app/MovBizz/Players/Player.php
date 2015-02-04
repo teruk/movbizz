@@ -1,5 +1,6 @@
 <?php namespace MovBizz\Players;
 
+use MovBizz\Movies\Movie;
 /**
 * 
 */
@@ -132,18 +133,22 @@ class Player
 	 * add a movie to player
 	 * @param Movie $movie [description]
 	 */
-	public function addMovie(Movie $movie)
+	public function addMovie(Movie $newMovie)
 	{
-		array_push($this->getMoviesAttribute(), $movie);
+		$movies = $this->getMoviesAttribute();
+		array_push($movies, $newMovie);
+		$this->attributes['movies'] = $movies;
 	}
 
 	/**
 	 * add an award caindidate
 	 * @param Movie $movie [description]
 	 */
-	public function addAwardCandidate(Movie $movie)
+	public function addAwardCandidate(Movie $candidate)
 	{
-		array_push($this->getAwardCandidatesAttribute(), $movie);
+		$awardCandidates = $this->getAwardCandidatesAttribute();
+		array_push($awardCandidates, $candidate);
+		$this->attributes['awardCandidates'] = $awardCandidates;
 	}
 
 	/**
