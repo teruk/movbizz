@@ -3,7 +3,7 @@
 	<div class="col-sm-5 game-header">
 
 		<div class="col-sm-4">
-			{{ $currentPlayer->getNameAttribute() }}
+			<span class="{{ 'label label-'.$currentPlayer->getBgColorAttribute().''}}">Player:</span> {{ $currentPlayer->getNameAttribute() }}
 		</div>
 
 		<div class="col-sm-4">

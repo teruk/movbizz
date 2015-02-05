@@ -23,9 +23,9 @@ class Talkshow implements RandomEventsInterface
 	 * execute random event
 	 * @return [type] [description]
 	 */
-	public function run()
+	public function run($player)
 	{
-		$movies = $this->movieRepo->getInProductionMovies();
+		$movies = $this->movieRepo->getInProductionMovies($player);
 		$numberOfMovies = sizeof($movies);
 		if ($numberOfMovies > 0)
 		{
@@ -36,10 +36,10 @@ class Talkshow implements RandomEventsInterface
 
 				$actor = $this->actorRepo->findById($selectedMovie->getActorIdAttribute());
 
-				return $actor->present()->name."'s appearance on a well-know talkshow increased the popularity of ".$selectedMovie->getTitleAttribute() .".";
+				$player->setEventAttribute($actor->present()->name."'s appearance on a well-know talkshow increased the popularity of ".$selectedMovie->getTitleAttribute() .".");
 			}
 
 		}
-		return "Nothing special happened this round.";
+		$player->setEventAttribute("Nothing special happened this round.");
 	}
 }

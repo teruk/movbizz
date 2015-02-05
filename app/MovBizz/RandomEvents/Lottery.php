@@ -13,7 +13,7 @@ class Lottery implements RandomEventsInterface
 	 * execute the random event
 	 * @return [type] [description]
 	 */
-	public function run()
+	public function run($player)
 	{
 		$winnings = 0;
 
@@ -22,9 +22,9 @@ class Lottery implements RandomEventsInterface
 				$winnings += mt_rand(10000, 100000);
 		}
 
-		Session::set('player.money', (Session::get('player.money') + $winnings));
+		$player->addMoney($winnings);
 
-		Event::fire('stats.lotteryWinnings');
-		return Session::get('player.name').' won '.$winnings.'€ in the lottery. Congratulations!';
+		Event::fire('stats.lotteryWinnings', [$winnings]);
+		$player->setEventAttribute($player->getNameAttribute().' won '.$winnings.'€ in the lottery. Congratulations!');
 	}
 }

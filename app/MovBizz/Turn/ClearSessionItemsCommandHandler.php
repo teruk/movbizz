@@ -22,10 +22,6 @@ class ClearSessionItemsCommandHandler implements CommandHandler {
     	Session::set('advertisement.tv', 0);
     	Session::set('advertisement.radio', 0);
     	Session::set('advertisement.poster', 0);
-
-        /** Event section */
-
-        //Session::set('events', []);
     }
 
 }

@@ -1,9 +1,8 @@
 <?php namespace MovBizz\Turn;
 
-class CalculateAwardsCommand {
+class DetermLoansCommand {
 
 	public $players;
-	
     /**
      */
     public function __construct($players)

@@ -8,7 +8,7 @@
 		<div class="col-md-5 movie-production">
 			<h4>Charts</h4>
 
-			<table class="table game-select-table table-condensed">
+			<table class="table table-condensed">
 				<thead>
 					<tr>
 						<th>Pos.</th>
@@ -18,16 +18,12 @@
 				</thead>
 				<tbody>
 					@foreach ($charts as $chartElement)
-						@if ($chartElement->belongsToPlayer)
-							<tr class="info">
-						@else
-							<tr>
-						@endif
-							<td>{{ $chartElement->currentPosition }}</td>
+						<tr class={{ $chartElement->getBackgroundColorAttribute() }}>
+							<td>{{ $chartElement->getCurrentPositionAttribute() }}</td>
 							<td>
-								{{ $chartElement->movie->title }}
+								{{ $chartElement->getMovieAttribute()->getTitleAttribute() }}
 							</td>
-							<td class="td-costs">{{ $chartElement->income }}</td>
+							<td class="td-costs">{{ $chartElement->getIncomeAttribute() }}</td>
 						</tr>
 					@endforeach
 				</tbody>

@@ -7,7 +7,7 @@ use MovBizz\Movies\Movie;
 class Player
 {
 	
-	protected $fillable = ['name', 'money', 'loan', 'movies', 'awardCandidates', 'bg-color', 'event'];
+	protected $fillable = ['name', 'money', 'loan', 'movies', 'awardCandidates', 'bg-color', 'event', 'points'];
 
 	/**
 	 * return name attribute
@@ -86,6 +86,7 @@ class Player
 		$this->attributes['movies'] = [];
 		$this->attributes['awardCandidates'] = [];
 		$this->attributes['bg-color'] = $bgColor;
+		$this->attributes['points'] = 0;
 	}
 
 	/**
@@ -155,7 +156,7 @@ class Player
 	 * clear award candidates
 	 * @return [type] [description]
 	 */
-	public function clearAwardCandidates()
+	public function resetAwardCandidates()
 	{
 		$this->attributes['awardCandidates'] = [];
 	}
@@ -167,5 +168,10 @@ class Player
 	public function setEventAttribute($message)
 	{
 		$this->attributes['event'] = $message;
+	}
+
+	public function getPointsAttribute()
+	{
+		return $this->attributes['points'];
 	}
 }

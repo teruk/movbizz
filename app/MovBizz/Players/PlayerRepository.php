@@ -12,7 +12,7 @@ class PlayerRepository
 		'success',
 		'info',
 		'warning',
-		'active'
+		'default'
 		];
 
 	/**

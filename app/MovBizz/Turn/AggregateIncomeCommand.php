@@ -1,6 +1,6 @@
 <?php namespace MovBizz\Turn;
 
-class CalculateAwardsCommand {
+class AggregateIncomeCommand {
 
 	public $players;
 	

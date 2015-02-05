@@ -15,7 +15,7 @@ class SetGameSettingsCommandHandler implements CommandHandler {
     {
     	// game settings
     	Session::put('game.round', 0); // ingame week counter
-    	Session::put('game.credit_rate', 10); // credit rate
+    	Session::put('game.creditRate', 10); // credit rate
 
     	Session::put('advertisement', []);
 

@@ -21,12 +21,12 @@ class RunRandomEventCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-    	if (mt_rand(1, 25) == 1) {
-	    	$eventMessage = Event::fire($this->randomEventRepo->getRandomEvent());
-	   		Session::put('events', $eventMessage);
-	   	} else {
-	   		Session::put('events', ['Nothing special happened this round.']);
-	   	}
+        foreach ($command->players as $player) {
+            if (mt_rand(1, 25) == 1) 
+                Event::fire($this->randomEventRepo->getRandomEvent(), [$player]);
+            else
+                $player->setEventAttribute( 'Nothing special happened this round.' );
+        }
     }
 
 }

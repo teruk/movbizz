@@ -156,9 +156,9 @@ class Movie extends Eloquent implements QualityInterface {
 	 * add the round income to the total income
 	 * @return [type] [description]
 	 */
-	public function increaseIncome()
+	public function increaseIncome($income)
 	{
-		$this->attributes['income'] = $this->getIncomeAttribute() + $this->getRoundIncomeAttribute();
+		$this->attributes['income'] += $income;
 	}
 
 	/**
@@ -240,6 +240,15 @@ class Movie extends Eloquent implements QualityInterface {
 	public function getStatusAttribute()
 	{
 		return $this->attributes['status'];
+	}
+
+	/**
+	 * return running costs
+	 * @return [type] [description]
+	 */
+	public function getRunningCostsAttribute()
+	{
+		return $this->attributes['runningCosts'];
 	}
 
 	/**

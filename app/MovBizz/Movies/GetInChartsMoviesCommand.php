@@ -1,8 +1,8 @@
-<?php namespace MovBizz\Turn;
+<?php namespace MovBizz\Movies;
 
-class CalculateAwardsCommand {
+class GetInChartsMoviesCommand {
 
-	public $players;
+    public $players;
 	
     /**
      */

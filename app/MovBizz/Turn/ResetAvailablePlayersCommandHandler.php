@@ -13,7 +13,7 @@ class ResetAvailablePlayersCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-    	Session::set('game.availablePlayers', Session::get('game.players'));
+    	Session::set('game.availablePlayers', $command->players);
     }
 
 }

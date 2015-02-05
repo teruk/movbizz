@@ -8,6 +8,7 @@ use MovBizz\Persons\Director;
 use MovBizz\Locations\LocationRepository;
 use MovBizz\Locations\Location;
 use MovBizz\Movies\Movie;
+use MovBizz\Players\Player;
 use Faker\Factory as Faker;
 
 class MovieRepository {
@@ -27,13 +28,12 @@ class MovieRepository {
 	 * return all movies which are currently in production
 	 * @return [type] [description]
 	 */
-	public function getInProductionMovies() 
+	public function getInProductionMovies(Player $player) 
 	{
-		$allMovies = Session::get('player.movies');
 		$inProductionMovies = [];
-		foreach ($allMovies as $movie) 
+		foreach ($player->getMoviesAttribute() as $movie) 
 		{
-			if ($movie->status == 0 || $movie->round == 1)
+			if ($movie->hasStatusInProduction() || $movie->getRoundAttribute() == 1)
 				array_push($inProductionMovies, $movie);
 		}
 
@@ -44,13 +44,12 @@ class MovieRepository {
 	 * return all movies which are currently in charts
 	 * @return [type] [description]
 	 */
-	public function getInChartsMovies()
+	public function getInChartsMovies(Player $player)
 	{
-		$allMovies = Session::get('player.movies');
 		$inChartsMovies = [];
-		foreach ($allMovies as $movie) 
+		foreach ($player->getMoviesAttribute() as $movie) 
 		{
-			if ($movie->status == 1)
+			if ($movie->hasStatusInCharts())
 				array_push($inChartsMovies, $movie);
 		}
 
@@ -113,7 +112,7 @@ class MovieRepository {
 	{
 		$income = $this->calculateIncome($movie);
 		$movie->setRoundIncome($income);
-    	$movie->increaseIncome();
+    	$movie->increaseIncome($movie->getRoundIncomeAttribute());
 
     	return $movie;
 	}

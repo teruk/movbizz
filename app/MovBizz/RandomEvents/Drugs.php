@@ -23,9 +23,9 @@ class Drugs implements RandomEventsInterface
 	 * execute the random event
 	 * @return [type] [description]
 	 */
-	public function run()
+	public function run($player)
 	{
-		$movies = $this->movieRepo->getInProductionMovies();
+		$movies = $this->movieRepo->getInProductionMovies($player);
 		$numberOfMovies = sizeof($movies);
 		if ($numberOfMovies > 0)
 		{
@@ -37,10 +37,10 @@ class Drugs implements RandomEventsInterface
 				$actor = $this->actorRepo->findById($selectedMovie->getActorIdAttribute());
 
 				Event::fire('stats.drugUse');
-				return $actor->present()->name." had a drug incident. The Production of ".$selectedMovie->getTitleAttribute() ." is delayed.";
+				$player->setEventAttribute($actor->present()->name." had a drug incident. The Production of ".$selectedMovie->getTitleAttribute() ." is delayed.");
 			}
 
 		}
-		return "Nothing special happened this round.";
+		$player->setEventAttribute("Nothing special happened this round.");
 	}
 }

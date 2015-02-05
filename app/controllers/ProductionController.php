@@ -128,21 +128,18 @@ class ProductionController extends \BaseController {
 	 */
 	public function getSummary()
 	{
-		if (Session::has('production'))
-		{
+		if (Session::has('production')) {
 			$production = Session::get('production');
 
 			$affordable = true;
-			if ($production['total_cost'] > Session::get('player.money'))
+			if ($production['total_cost'] > Session::get('game.currentPlayer')->getMoneyAttribute())
 				$affordable = false;
 
 			return View::make('production.summary', compact('production', 'affordable'));
 		}
-		else
-		{
-			Flash::error('You need to start a new movie first!');
-			return Redirect::route('menu_path');
-		}
+
+		Flash::error('You need to start a new movie first!');
+		return Redirect::route('menu_path');
 	}
 
 	/**
