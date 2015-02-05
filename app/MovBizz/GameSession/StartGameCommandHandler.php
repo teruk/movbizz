@@ -31,13 +31,6 @@ class StartGameCommandHandler implements CommandHandler {
         // select next player
         $this->playerRepo->selectNextPlayer($players);
 
-    	// player settings
-    	Session::put('player.name', $command->playerNames[0]); // player name
-    	Session::put('player.money', 1500000); // player money
-    	Session::put('player.loan', 0); // player credit
-        Session::put('player.movies', []);
-        Session::put('player.awardCandidates', []);
-
         // increase counter for started games
         Event::fire('stats.startedGame');
     }

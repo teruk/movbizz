@@ -2,7 +2,23 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-sm-12">
+			<h3>Update 04. February 2015</h3>
+
+			<p><b>Game:</b></p>
+			<ul>
+				<li>Added local multiplayer feature: play with up to 5 people</li>
+			</ul>
+
+			<p><b>Technical:</b></p>
+			<ul>
+				<li>Adapted game to local multiplayer; for detail information see <a href="https://github.com/teruk/movbizz">Github</a></li>
+				<li>Fixed bug: Movie round were increased twice at the end of each turn</li>
+				<li>Added MovBizz\Players\Player and MovBizz\Players\PlayerRepository class</li>
+			</ul>
+		</div>
+
+		<div class="col-sm-12">
 			<h3>Update 02. February 2015</h3>
 
 			<p><b>Game:</b></p>

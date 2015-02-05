@@ -170,8 +170,13 @@ class Player
 		$this->attributes['event'] = $message;
 	}
 
+	/**
+	 * return points
+	 * @return [type] [description]
+	 */
 	public function getPointsAttribute()
 	{
 		return $this->attributes['points'];
 	}
+
 }
