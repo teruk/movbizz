@@ -1,8 +1,9 @@
 <footer>
 	<div class="row game-footer">
-		<ul class="list-unstyled">
+		<ul class="list-unstyled list-inline">
 			<li class="pull-right"><a href="#top">Up</a></li>
 			<li><a href="https://github.com/teruk/movbizz">Github</a></li>
+			<li><a href="https://twitter.com/MovBizz">Twitter</a></li>
 		</ul>
 	</div>
 

@@ -13,9 +13,9 @@ class AdvertiseMovieCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-    	$tvPopularityPerAd = 1;
-    	$radioPopularityPerAd = 0.5;
-    	$posterPopularityPerAd = 0.25;
+    	$tvPopularityPerAd = 5;
+    	$radioPopularityPerAd = 2.5;
+    	$posterPopularityPerAd = 1;
 
         $currentPlayer = Session::get('game.currentPlayer');
     	$movie = Session::get('advertisement.movie');
