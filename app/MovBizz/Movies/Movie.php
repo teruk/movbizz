@@ -117,7 +117,7 @@ class Movie extends Eloquent implements QualityInterface {
 	 */
 	public function addCosts($costs)
 	{
-		$this->attributes['costs'] = $this->getCostAttribute() + $costs;
+		$this->attributes['costs'] += $costs;
 	}
 
 	/**
@@ -202,7 +202,7 @@ class Movie extends Eloquent implements QualityInterface {
 	 * returns cost atttribute
 	 * @return [type] [description]
 	 */
-	public function getCostAttribute()
+	public function getCostsAttribute()
 	{
 		return $this->attributes['costs'];
 	}
@@ -276,7 +276,7 @@ class Movie extends Eloquent implements QualityInterface {
 	 */
 	private function calculateStartPopularity()
 	{
-		return round( $this->getQualityAttribute() * 0.70 + $this->getCostAttribute() * 0.30 / 3500000 );
+		return round( $this->getQualityAttribute() * 0.70 + $this->getCostsAttribute() * 0.30 / 3500000 );
 	}
 
 	/**

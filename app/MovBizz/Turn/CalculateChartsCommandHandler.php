@@ -6,16 +6,19 @@ use MovBizz\Charts\ChartElement;
 use MovBizz\Charts\ChartRepository;
 use MovBizz\Movies\Movie;
 use MovBizz\Movies\MovieRepository;
+use MovBizz\Players\PlayerRepository;
 use Session;
 
 class CalculateChartsCommandHandler implements CommandHandler {
 
 	protected $chartRepo;
 	protected $movieRepo;
+    protected $playerRepo;
 
-	function __construct(ChartRepository $chartRepo, MovieRepository $movieRepo) {
+	function __construct(ChartRepository $chartRepo, MovieRepository $movieRepo, PlayerRepository $playerRepo) {
 		$this->chartRepo = $chartRepo;
 		$this->movieRepo = $movieRepo;
+        $this->playerRepo = $playerRepo;
 	}
     /**
      * Handle the command.
@@ -34,32 +37,26 @@ class CalculateChartsCommandHandler implements CommandHandler {
     			$chartElement->movie->setStatusToArchive();
     			// remove chart element from charts
     			unset($chartElements[($chartElement->currentPosition - 1)]);
+
+                // if the movie made profit and his loan is 0, the player gets awarded with one point
+                if ($chartElement->movie->getIncomeAttribute() > $chartElement->movie->getCostsAttribute() &&
+                    $chartElement->belongsToPlayer) {
+
+                    $this->playerRepo->verifyPoints($chartElement->getPlayerAttribute(), 1);
+                }
+
     		}
 
     		// calculate the current income, new popularity and increase rounds of every non-player movie
-    		if ($chartElement->movie->hasStatusInCharts() && !$chartElement->belongsToPlayer) {
-    			$movie = $this->movieRepo->calculateProgress($chartElement->movie);
+    		if ($chartElement->movie->hasStatusInCharts() && !$chartElement->belongsToPlayer) 
+    			$this->movieRepo->calculateProgress($chartElement->movie);
 
-    			$chartElement->setIncome($movie->getRoundIncomeAttribute());
-    		}
-
-    		// update income of the chart element for player movies
-    		if ($chartElement->movie->hasStatusInCharts() && $chartElement->belongsToPlayer) {
-    			$chartElement->setIncome($chartElement->movie->getRoundIncomeAttribute());
-    		}
+    		// update income of the chart element for all movies
+    		$chartElement->setIncome($chartElement->movie->getRoundIncomeAttribute());
     	}
     	// add new player movies
-        foreach ($command->players as $player) {
-             
-        	foreach ($player->getMoviesAttribute() as $playerMovie) {
-        		if ($playerMovie->getRoundAttribute() == 1 && $playerMovie->hasStatusInCharts()) {
-        			$newChartElement = new ChartElement();
-        			$newChartElement->setAttributes($playerMovie, 0, $playerMovie->getRoundIncomeAttribute(), true, $player->getBgColorAttribute());
-
-        			array_push($chartElements, $newChartElement);
-        		}
-        	}
-        }
+        $chartElements = $this->chartRepo->addPlayerMovies($command->players, $chartElements);
+        
     	// if the number of elements is lower than twenty, generate new ones
     	if (sizeof($chartElements) < 20) {
     		$amountOfNewMovies = 20 - sizeof($chartElements);
@@ -70,7 +67,7 @@ class CalculateChartsCommandHandler implements CommandHandler {
 				$newChartElement = new ChartElement();
 				$movie = $this->movieRepo->calculateProgress($movie);
 
-				$newChartElement->setAttributes($movie, 0, $movie->getRoundIncomeAttribute(), false, 'active');
+				$newChartElement->setAttributes($movie, 0, $movie->getRoundIncomeAttribute(), false);
 				array_push($chartElements, $newChartElement);
 			}
     	}

@@ -56,4 +56,17 @@ class PlayerRepository
 
 		$this->selectNextPlayer(Session::get('game.players'));
 	}
+
+	/**
+	 * verifies if the player is allowed to recieve points
+	 * @param  Player $player         [description]
+	 * @param  [type] $numberOfPoints [description]
+	 * @return [type]                 [description]
+	 */
+	public function verifyPoints(Player $player, $numberOfPoints)
+	{
+		if ($player->getLoanAttribute() == 0)
+			$player->addPoints($numberOfPoints);
+		
+	}
 }

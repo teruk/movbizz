@@ -73,6 +73,15 @@ class Player
 	}
 
 	/**
+	 * return point attribute
+	 * @return [type] [description]
+	 */
+	public function getPointsAttribute()
+	{
+		return $this->attributes['points'];
+	}
+
+	/**
 	 * initiates player attributes at the start
 	 * @param  String $name    [description]
 	 * @param  String $bgColor [description]
@@ -153,6 +162,15 @@ class Player
 	}
 
 	/**
+	 * add points
+	 * @param Integer $points [description]
+	 */
+	public function addPoints($points)
+	{
+		$this->attributes['points']	+= $points;
+	}
+
+	/**
 	 * clear award candidates
 	 * @return [type] [description]
 	 */
@@ -169,14 +187,4 @@ class Player
 	{
 		$this->attributes['event'] = $message;
 	}
-
-	/**
-	 * return points
-	 * @return [type] [description]
-	 */
-	public function getPointsAttribute()
-	{
-		return $this->attributes['points'];
-	}
-
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-sm-5">
 			<h4>Start a new game</h4>
 			<p>Please type in your {{ Lang::choice('name|names', $numberOfPlayers) }}:</p>
 

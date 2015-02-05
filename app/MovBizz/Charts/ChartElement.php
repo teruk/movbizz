@@ -10,7 +10,7 @@ class ChartElement extends Eloquent
 	 * [$fillable description]
 	 * @var [type]
 	 */
-	protected $fillable = ['movie', 'currentPosition', 'positionLastWeek', 'income', 'belongsToPlayer', 'backgroundColor'];
+	protected $fillable = ['movie', 'currentPosition', 'positionLastWeek', 'income', 'belongsToPlayer', 'player'];
 
 	/**
 	 * set the attribute of the element
@@ -19,14 +19,14 @@ class ChartElement extends Eloquent
 	 * @param [type] $income          [description]
 	 * @param [type] $belongsToPlayer [description]
 	 */
-	public function setAttributes(Movie $movie, $currentPosition, $income, $belongsToPlayer, $backgroundColor)
+	public function setAttributes(Movie $movie, $currentPosition, $income, $belongsToPlayer, $player = "")
 	{
 		$this->attributes['movie'] = $movie;
 		$this->attributes['currentPosition'] = $currentPosition;
 		$this->attributes['positionLastWeek'] = 0;
 		$this->attributes['income'] = $income;
 		$this->attributes['belongsToPlayer'] = $belongsToPlayer;
-		$this->attributes['backgroundColor'] = $backgroundColor;
+		$this->attributes['player'] = $player;
 	}
 
 	/**
@@ -91,5 +91,14 @@ class ChartElement extends Eloquent
 	public function getMovieAttribute()
 	{
 		return $this->attributes['movie'];
+	}
+
+	/**
+	 * return player referenc
+	 * @return [type] [description]
+	 */
+	public function getPlayerAttribute()
+	{
+		return $this->attributes['player'];
 	}
 }

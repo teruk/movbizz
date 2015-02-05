@@ -113,8 +113,6 @@ class MovieRepository {
 		$income = $this->calculateIncome($movie);
 		$movie->setRoundIncome($income);
     	$movie->increaseIncome($movie->getRoundIncomeAttribute());
-
-    	return $movie;
 	}
 
 	/**

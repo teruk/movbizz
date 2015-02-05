@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row">
 		<h3>Welcome to MovBizz!</h3>
-		<article>This game is a remake of the C64 game Movie Business. It is a text based game where you choose an actor, a director and a location for your movie. You can advertise your movie in the paper, in the radio or on tv. Create a movie that wins awards and fills your moneybag! But be careful random events can influence your movie production in both, a positive and a negative, way.</article>
+		<article>This game is a remake of the C64 game Movie Business. It is a casual text-based game where you choose an actor, a director and a location for your movie. You can advertise your movie in the paper, over the radio or on tv. Create a movie that wins awards and fills your moneybag! But be careful random events can influence your movie production in both, a positive and a negative, way.</article>
 
 		<br>
 		<p><i>Be aware that the current version of the game is an early version and many features are missing!</i></p>

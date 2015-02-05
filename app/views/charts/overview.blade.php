@@ -5,7 +5,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<h4>Charts</h4>
 
 			<table class="table table-condensed">
@@ -18,7 +18,11 @@
 				</thead>
 				<tbody>
 					@foreach ($charts as $chartElement)
-						<tr class={{ $chartElement->getBackgroundColorAttribute() }}>
+						@if ($chartElement->belongsToPlayer)
+							<tr class={{ $chartElement->getPlayerAttribute()->getBgColorAttribute() }}>
+						@else
+							<tr class="active">
+						@endif
 							<td>{{ $chartElement->getCurrentPositionAttribute() }}</td>
 							<td>
 								{{ $chartElement->getMovieAttribute()->getTitleAttribute() }}

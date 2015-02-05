@@ -1,5 +1,6 @@
 <?php
 
+use MovBizz\Turn\AnalyseChartsCommand;
 use MovBizz\Turn\CalculateAwardsCommand;
 use MovBizz\Turn\CalculateChartsCommand;
 use MovBizz\Turn\CalculateIncomeCommand;
@@ -64,6 +65,9 @@ class TurnController extends \BaseController {
 
 		// calculate new charts
 		$this->execute(CalculateChartsCommand::class, $input);
+
+		// analyse charts
+		$this->execute(AnalyseChartsCommand::class);
 
 		// clear session items
 		$this->execute(ClearSessionItemsCommand::class);

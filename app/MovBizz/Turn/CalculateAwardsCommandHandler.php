@@ -1,9 +1,16 @@
 <?php namespace MovBizz\Turn;
 
 use Laracasts\Commander\CommandHandler;
+use MovBizz\Players\PlayerRepository;
 use Session;
 
 class CalculateAwardsCommandHandler implements CommandHandler {
+
+    protected $playerRepo;
+
+    function __construct(PlayerRepository $playerRepo) {
+        $this->playerRepo = $playerRepo;
+    }
 
     /**
      * Handle the command.
@@ -20,13 +27,16 @@ class CalculateAwardsCommandHandler implements CommandHandler {
             
             foreach ($player->getAwardCandidatesAttribute() as $candidate) {
                 if ($candidate->getQualityAttribute() > 90) {
-                    array_push($winners, ['movie' => $candidate, 'backgroundColor' => $player->getBgColorAttribute()]);
+                    array_push($winners, ['movie' => $candidate, 'player' => $player]);
                     $player->addMoney($prizeMoney);
                     $candidate->increaseIncome($prizeMoney);
 
-                    if (!$candidate->hasStatusInArchive()) {
+                    // if the movie has the status is in charts, then the popularity will be increased
+                    if (!$candidate->hasStatusInArchive()) 
                         $candidate->increasePopularity(25);
-                    }
+
+                    // the player will be awarded with points, if his loan is 0
+                    $this->playerRepo->verifyPoints($player, 3);
                 }
             }
 

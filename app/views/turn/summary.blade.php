@@ -11,10 +11,11 @@
 				
 			@include('turn.partials.production')
 
-			@include('turn.partials.income')
+			<h4>
+				<u>Player summary</u>
+			</h4>
 
-			@include('turn.partials.loans')
-
+			@include('turn.partials.players')
 
 			<div class="form-group div-button-footer">
 				{{ link_to_route('charts_path', 'Go to charts', null, ['class' => 'btn btn-sm btn-default']) }}

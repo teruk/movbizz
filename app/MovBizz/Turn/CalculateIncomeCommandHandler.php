@@ -30,7 +30,7 @@ class CalculateIncomeCommandHandler implements CommandHandler {
         	foreach ($player->getMoviesAttribute() as $movie) {
 
         		if ($movie->hasStatusInCharts()) {
-        			$movie = $this->movieRepo->calculateProgress($movie);
+        			$this->movieRepo->calculateProgress($movie);
                     $player->addMoney($movie->roundIncome);
         		}
         	}

@@ -36,9 +36,9 @@ class GenerateChartsCommandHandler implements CommandHandler {
     	for ($i=0; $i < 20; $i++) { 
     		$movie = $this->movieRepo->generateComputerMovie();
     		$chartElement = new ChartElement();
-    		$movie = $this->movieRepo->calculateProgress($movie);
+    		$this->movieRepo->calculateProgress($movie);
 
-    		$chartElement->setAttributes($movie, 0, $movie->roundIncome, false, 'active');
+    		$chartElement->setAttributes($movie, 0, $movie->getRoundIncomeAttribute(), false);
     		array_push($chartElements, $chartElement);
     	}
     	$chartElements = $this->chartRepo->sort($chartElements);
