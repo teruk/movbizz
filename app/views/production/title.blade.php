@@ -4,7 +4,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<h4>Step 1: Select movie title!</h4>
 
 			{{ Form::open(['route' => 'storeMovieTitle_path']) }}

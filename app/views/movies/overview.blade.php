@@ -6,7 +6,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<h4>Overview</h4>
 
 			<table class="table-striped game-select-table">

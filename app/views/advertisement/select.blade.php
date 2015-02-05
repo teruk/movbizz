@@ -5,7 +5,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<h4>Select Advertisement for {{ $movie->title }}!</h4>
 
 			{{ Form::open(['route' => 'placeAdvertisement_path']) }}
