@@ -5,7 +5,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production awards">
+		<div class="col-sm-5 movie-production awards">
 			<h4><u>Award winners:</u></h4>
 			
 			@if (sizeof($winners) > 0)

@@ -6,7 +6,7 @@
 
 	<!-- game menu -->
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<p>Current loan: {{ $currentLoan }} € (max. 2000000 €)</p>
 
 			{{ Form::open(['route' => 'paybackLoan_path']) }}

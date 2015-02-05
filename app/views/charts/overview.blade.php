@@ -5,7 +5,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<h4>Charts</h4>
 
 			<table class="table table-condensed">
@@ -20,9 +20,7 @@
 					@foreach ($charts as $chartElement)
 						<tr class={{ $chartElement->getBackgroundColorAttribute() }}>
 							<td>{{ $chartElement->getCurrentPositionAttribute() }}</td>
-							<td>
-								{{ $chartElement->getMovieAttribute()->getTitleAttribute() }}
-							</td>
+							<td>{{ $chartElement->getMovieAttribute()->getTitleAttribute() }}</td>
 							<td class="td-costs">{{ $chartElement->getIncomeAttribute() }}</td>
 						</tr>
 					@endforeach
@@ -30,7 +28,7 @@
 
 				<tfoot>
 					<tr>
-						<td colspan="4" class="td-footer">
+						<td colspan="3" class="td-footer">
 							{{ link_to_route('menu_path', 'Go back', null, ['class' => 'btn btn-sm btn-default'])}}
 						</td>
 					</tr>

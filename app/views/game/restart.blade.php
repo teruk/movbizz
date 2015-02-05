@@ -5,7 +5,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<p>Would you like to restart the game?</p>
 
 			{{ Form::open(['route' => 'restart_path']) }}
