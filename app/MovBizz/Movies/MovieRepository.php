@@ -207,9 +207,11 @@ class MovieRepository {
     	$location = $this->locationRepo->findById($locationId);
 
 		// calculate quality of the movie
-		$quality = round((($actor->talent * 10 + rand(0,4) * $this->calculateTheSignOfANumber()) + 
-					($director->talent * 10 + rand(0,4) * $this->calculateTheSignOfANumber()) + 
-					($location->quality * 10 + rand(0,2) * $this->calculateTheSignOfANumber())) / 3);
+		$quality = round(
+			($actor->talent * 10 + rand(0,3) * $this->calculateTheSignOfANumber()) * 0.35 + 
+			($director->talent * 10 + rand(0,3) * $this->calculateTheSignOfANumber()) * 0.45 + 
+			($location->quality * 10 + rand(0,3) * $this->calculateTheSignOfANumber()) * 0.20
+		);
 
 		if ($quality > 100)
 			$quality = 100;

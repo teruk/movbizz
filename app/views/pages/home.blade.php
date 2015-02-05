@@ -19,6 +19,7 @@
 				<li>Dynamic cinema charts</li>
 				<li>Awards every 12 rounds</li>
 				<li>Random events during production, e.g. drug use, lottery win</li>
+				<li>Local multiplayer</li>
 			</ul>
 		</div>
 
@@ -26,7 +27,8 @@
 			<p><b>ToDo list:</b></p>
 			<ul>
 				<li>Adjust movie income, advertise impact on movie and movie quality calculation</li>
-				<li>Local multiplayer</li>
+				<li>Adjust long-term development of actor, director and location costs</li>
+				<li>Point system</li>
 				<li>Localisation</li>
 			</ul>
 		</div>
@@ -34,6 +36,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
+			<br><b>Share your thoughts about MovBizz:</b>
 			@include('pages.partials.disqus')
 		</div>
 	</div>

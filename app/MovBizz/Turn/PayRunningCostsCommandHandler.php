@@ -20,7 +20,8 @@ class PayRunningCostsCommandHandler implements CommandHandler {
         	foreach ($player->getMoviesAttribute() as $movie) {
                 
         		if ($movie->hasStatusInProduction()) {
-        			$movie->setRunningCosts( floor($movie->getCostAttribute() * (rand(201, 299) / 10000) ) );
+//        			$movie->setRunningCosts( floor($movie->getCostAttribute() * (rand(201, 299) / 10000) ) );
+                    $movie->setRunningCosts( mt_rand( 12000, ( round( ($movie->getQualityAttribute() +  10 ) / 20) * 6000 + 12000) ) );
 
                     $player->payMoney($movie->getRunningCosts);
         			$movie->addCosts($movie->runningCosts);

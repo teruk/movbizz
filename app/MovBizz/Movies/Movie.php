@@ -266,7 +266,7 @@ class Movie extends Eloquent implements QualityInterface {
 	 */
 	private function calculateStartPopularity()
 	{
-		return round( $this->getQualityAttribute() * 0.55 + $this->getCostAttribute() * 0.275 / 3300000 + 0);
+		return round( $this->getQualityAttribute() * 0.70 + $this->getCostAttribute() * 0.30 / 3500000 );
 	}
 
 	/**
