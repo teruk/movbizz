@@ -11,4 +11,13 @@ class PagesController extends \BaseController {
 	{
 		return View::make('pages.home');
 	}
+
+	/**
+	 * display faqs
+	 * @return [type] [description]
+	 */
+	public function showFAQ()
+	{
+		return View::make('pages.faq');
+	}
 }

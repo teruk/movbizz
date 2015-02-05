@@ -19,6 +19,7 @@
 						<li>{{ link_to_route('selectNumberOfPlayers_path', 'New Game') }}
 					@endif
 					<li>{{ link_to_route('changelog_path', 'Changelog')}}
+					<li>{{ link_to_route('faq_path', 'FAQ') }}</li>
 				</ul>
 			</div>
 		</div>

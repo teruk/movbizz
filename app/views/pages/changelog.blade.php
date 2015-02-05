@@ -11,15 +11,22 @@
 				<li>Adjusted output of advertisment</li>
 				<li>Adjusted calculation of movie quality and start popularity</li>
 				<li>Added new random Events</li>
+				<li>Added point system</li>
 			</ul>
 
 			<p><b>Technical:</b></p>
 			<ul>
 				<li>Adapted game to local multiplayer; for detail information see <a href="https://github.com/teruk/movbizz">Github</a></li>
 				<li>Fixed bug: Movie round were increased twice at the end of each turn</li>
+				<li>Fixed bug: Movie popularity will be increased correctly</li>
 				<li>Added MovBizz\Players\Player and MovBizz\Players\PlayerRepository class</li>
 			</ul>
-		</div>
+
+			<p><b>Page:</b></p>
+				<ul>
+					<li>Added {{ link_to_route('faq_path', 'FAQ') }}</li>
+				</ul>
+			</div>
 
 		<div class="col-sm-12">
 			<h3>Update 02. February 2015</h3>

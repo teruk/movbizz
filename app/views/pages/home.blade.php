@@ -19,7 +19,8 @@
 				<li>Dynamic cinema charts</li>
 				<li>Awards every 12 rounds</li>
 				<li>Random events during production, e.g. drug use, lottery win</li>
-				<li>Local multiplayer</li>
+				<li>Local multiplayer, 1-5 players</li>
+				<li>Point system, collect points to beat your opponents</li>
 			</ul>
 		</div>
 
@@ -28,7 +29,6 @@
 			<ul>
 				<li>Adjust movie income, advertise impact on movie and movie quality calculation</li>
 				<li>Adjust long-term development of actor, director and location costs</li>
-				<li>Point system</li>
 				<li>Localisation</li>
 			</ul>
 		</div>
