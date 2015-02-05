@@ -10,7 +10,7 @@ class ChartElement extends Eloquent
 	 * [$fillable description]
 	 * @var [type]
 	 */
-	protected $fillable = ['movie', 'currentPosition', 'positionLastWeek', 'income', 'belongsToPlayer'];
+	protected $fillable = ['movie', 'currentPosition', 'positionLastWeek', 'income', 'belongsToPlayer', 'backgroundColor'];
 
 	/**
 	 * set the attribute of the element
@@ -19,13 +19,14 @@ class ChartElement extends Eloquent
 	 * @param [type] $income          [description]
 	 * @param [type] $belongsToPlayer [description]
 	 */
-	public function setAttributes(Movie $movie, $currentPosition, $income, $belongsToPlayer)
+	public function setAttributes(Movie $movie, $currentPosition, $income, $belongsToPlayer, $backgroundColor)
 	{
 		$this->attributes['movie'] = $movie;
 		$this->attributes['currentPosition'] = $currentPosition;
 		$this->attributes['positionLastWeek'] = 0;
 		$this->attributes['income'] = $income;
 		$this->attributes['belongsToPlayer'] = $belongsToPlayer;
+		$this->attributes['backgroundColor'] = $backgroundColor;
 	}
 
 	/**
@@ -54,5 +55,41 @@ class ChartElement extends Eloquent
 	public function setPositionLastWeek($pos)
 	{
 		$this->attributes['positionLastWeek'] = $pos;
+	}
+
+	/**
+	 * return get background color
+	 * @return [type] [description]
+	 */
+	public function getBackgroundColorAttribute()
+	{
+		return $this->attributes['backgroundColor'];
+	}
+
+	/**
+	 * return current position
+	 * @return [type] [description]
+	 */
+	public function getCurrentPositionAttribute()
+	{
+		return $this->attributes['currentPosition'];
+	}
+
+	/**
+	 * return income
+	 * @return [type] [description]
+	 */
+	public function getIncomeAttribute()
+	{
+		return $this->attributes['income'];
+	}
+
+	/**
+	 * return movie
+	 * @return [type] [description]
+	 */
+	public function getMovieAttribute()
+	{
+		return $this->attributes['movie'];
 	}
 }

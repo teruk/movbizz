@@ -10,7 +10,7 @@ class LoanController extends \BaseController {
 	 */
 	public function getLoanForm()
 	{
-		$currentLoan = Session::get('player.loan');
+		$currentLoan = Session::get('game.currentPlayer')->getLoanAttribute();
 
 		return View::make('loan.take', compact('currentLoan'));
 	}
@@ -22,9 +22,9 @@ class LoanController extends \BaseController {
 	public function takeLoan()
 	{
 		$input = array_add([], 'amount', Input::get('amount'));
-		$this->execute(TakeLoanCommand::class, $input);
+		$playerLoan = $this->execute(TakeLoanCommand::class, $input);
 
-		$interest = floor( Session::get('player.loan') * Session::get('game.credit_rate') / 100);
+		$interest = floor( $playerLoan * Session::get('game.credit_rate') / 100);
 
 		Flash::success('Loan successful! You have pay the amount of '.$interest.' € per round as interest.');
 		return Redirect::back();
@@ -36,10 +36,11 @@ class LoanController extends \BaseController {
 	 */
 	public function getPaybackForm()
 	{
-		$currentLoan = Session::get('player.loan');
+		$currentPlayer = Session::get('game.currentPlayer'); 
+		$currentLoan = $currentPlayer->getLoanAttribute();
 
-		if (Session::get('player.money') > 0)
-			$maxPayback = (Session::get('player.loan') > Session::get('player.money')) ? (floor(Session::get('player.money')/100000) * 100000) : Session::get('player.loan');
+		if ($currentPlayer->getMoneyAttribute() > 0)
+			$maxPayback = ($currentLoan > $currentPlayer->getMoneyAttribute()) ? (floor($currentPlayer->getMoneyAttribute()/100000) * 100000) : $currentLoan;
 		else
 			$maxPayback = 0;
 
@@ -53,9 +54,9 @@ class LoanController extends \BaseController {
 	public function paybackLoan()
 	{
 		$input = array_add([], 'amount', Input::get('amount'));
-		$this->execute(PayBackLoanCommand::class, $input);
+		$restLoan = $this->execute(PayBackLoanCommand::class, $input);
 
-		Flash::success('Pay back successful! Rest loan: '. Session::get('player.loan').' €');
+		Flash::success('Pay back successful! Rest loan: '.$restLoan.' €');
 		return Redirect::back();
 	}
 

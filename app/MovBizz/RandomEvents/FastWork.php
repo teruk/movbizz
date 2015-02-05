@@ -19,21 +19,21 @@ class FastWork implements RandomEventsInterface
 	 * execute the random event
 	 * @return [type] [description]
 	 */
-	public function run()
+	public function run($player)
 	{
-		$movies = $this->movieRepo->getInProductionMovies();
+		$movies = $this->movieRepo->getInProductionMovies($player);
 		$numberOfMovies = sizeof($movies);
-		if ($numberOfMovies > 0)
-		{
+		if ($numberOfMovies > 0) {
 			$selectedMovie = $movies[mt_rand(0, ($numberOfMovies-1))];
 
-			if ($selectedMovie->getRoundAttribute() <= -2) {
+			if ($selectedMovie->getRoundAttribute() < (-1)) {
 				$selectedMovie->increaseRounds();
 
-				return "The production of "$selectedMovie->getTitleAttribute() ." is going well. It will take less time than anticipated to finisch this movie.";
+				$player->setEventAttribute("The production of ". $selectedMovie->getTitleAttribute() ." is going well. It will take less time than anticipated to finisch this movie.");
 			}
 
 		}
-		return "Nothing special happened this round.";
+
+		$player->setEventAttribute("Nothing special happened this round.");
 	}
 }

@@ -21,8 +21,17 @@ You can try it [here](http://movbizz.sebbmeyer.de)
 
 ### Contributing To MovBizz
 
-**All issues and pull requests should be filed on the [teruk/movbizz](http://github.com/teruk/movbizz) repository. But feel free to fork it and make your own version of the game.** 
+**All issues and pull requests should be filed on the [teruk/movbizz](https://github.com/teruk/movbizz) repository. But feel free to fork it and make your own version of the game.** 
+
+### Development notes
+
+[Gulp](http://gulpjs.com/) was used to autoprefix the /public/css/main.css file. Gulpfile.js is included.
 
 ### Licence
 
-MovBizz is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+MovBizz is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT). Every used Laravel 4 package was also licensed under the [MIT license](http://opensource.org/licenses/MIT):
+
+- [laracasts/Commander](https://github.com/laracasts/Commander)
+- [laracasts/flash](https://github.com/laracasts/flash)
+- [laracasts/Presenter](https://github.com/laracasts/Presenter)
+- [fzaninotto/faker](https://github.com/fzaninotto/Faker)

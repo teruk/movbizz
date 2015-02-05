@@ -11,7 +11,8 @@ body {
   border: 1px solid;
   border-bottom: 0px;
   background-color: #e6e6e6;
-  border-color: #dddddd; }
+  border-color: #dddddd;
+  margin-bottom: 0px; }
 
 .game-select-table {
   width: 100%;
@@ -41,10 +42,6 @@ body {
   border-top: 1px solid;
   border-color: #dddddd;
   margin-top: 5px; }
-
-.navigation1 {
-  background-color: #e6e6e6;
-  border-color: #dddddd; }
 
 .navigation {
   background-color: #e6e6e6;

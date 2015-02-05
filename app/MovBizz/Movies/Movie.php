@@ -156,9 +156,9 @@ class Movie extends Eloquent implements QualityInterface {
 	 * add the round income to the total income
 	 * @return [type] [description]
 	 */
-	public function increaseIncome()
+	public function increaseIncome($income)
 	{
-		$this->attributes['income'] = $this->getIncomeAttribute() + $this->getRoundIncomeAttribute();
+		$this->attributes['income'] += $income;
 	}
 
 	/**
@@ -243,6 +243,15 @@ class Movie extends Eloquent implements QualityInterface {
 	}
 
 	/**
+	 * return running costs
+	 * @return [type] [description]
+	 */
+	public function getRunningCostsAttribute()
+	{
+		return $this->attributes['runningCosts'];
+	}
+
+	/**
 	 * calculates how many round are need for production
 	 * @return [type] [description]
 	 */
@@ -258,6 +267,42 @@ class Movie extends Eloquent implements QualityInterface {
 	private function calculateStartPopularity()
 	{
 		return round( $this->getQualityAttribute() * 0.55 + $this->getCostAttribute() * 0.275 / 3300000 + 0);
+	}
+
+	/**
+	 * returns true if movie is in production
+	 * @return boolean [description]
+	 */
+	public function hasStatusInProduction()
+	{
+		if ($this->getStatusAttribute() == 0)
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * returns true if movie is in charts
+	 * @return boolean [description]
+	 */
+	public function hasStatusInCharts()
+	{
+		if ($this->getStatusAttribute() == 1)
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * return true if movie is in archive
+	 * @return boolean [description]
+	 */
+	public function hasStatusInArchive()
+	{
+		if ($this->getStatusAttribute() == 2)
+			return true;
+
+		return false;
 	}
 
 }

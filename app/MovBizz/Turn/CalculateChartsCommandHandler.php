@@ -29,50 +29,48 @@ class CalculateChartsCommandHandler implements CommandHandler {
     	$charts = Session::get('charts');
     	$chartElements = $charts['positions'];
 
-    	foreach ($chartElements as $chartElement) 
-    	{
-    		if ($chartElement->movie->getPopularityAttribute() <= 1)
-    		{
+    	foreach ($chartElements as $chartElement) {
+    		if ($chartElement->movie->getPopularityAttribute() <= 1) {
     			$chartElement->movie->setStatusToArchive();
     			// remove chart element from charts
     			unset($chartElements[($chartElement->currentPosition - 1)]);
     		}
 
     		// calculate the current income, new popularity and increase rounds of every non-player movie
-    		if ($chartElement->movie->getStatusAttribute() == 1 && !$chartElement->belongsToPlayer)
-    		{
+    		if ($chartElement->movie->hasStatusInCharts() && !$chartElement->belongsToPlayer) {
     			$movie = $this->movieRepo->calculateProgress($chartElement->movie);
 
     			$chartElement->setIncome($movie->getRoundIncomeAttribute());
     		}
 
     		// update income of the chart element for player movies
-    		if ($chartElement->movie->getStatusAttribute() == 1 && $chartElement->belongsToPlayer)
-    		{
+    		if ($chartElement->movie->hasStatusInCharts() && $chartElement->belongsToPlayer) {
     			$chartElement->setIncome($chartElement->movie->getRoundIncomeAttribute());
     		}
     	}
     	// add new player movies
-    	foreach (Session::get('player.movies') as $playerMovie) {
-    		if ($playerMovie->getRoundIncomeAttribute() == 1 && $playerMovie->getStatusAttribute() == 1)
-    		{
-    			$newChartElement = new ChartElement();
-    			$newChartElement->setAttributes($playerMovie, 0, $playerMovie->getRoundIncomeAttribute(), true);
+        foreach ($command->players as $player) {
+             
+        	foreach ($player->getMoviesAttribute() as $playerMovie) {
+        		if ($playerMovie->getRoundAttribute() == 1 && $playerMovie->hasStatusInCharts()) {
+        			$newChartElement = new ChartElement();
+        			$newChartElement->setAttributes($playerMovie, 0, $playerMovie->getRoundIncomeAttribute(), true, $player->getBgColorAttribute());
 
-    			array_push($chartElements, $newChartElement);
-    		}
-    	}
+        			array_push($chartElements, $newChartElement);
+        		}
+        	}
+        }
     	// if the number of elements is lower than twenty, generate new ones
-    	if (sizeof($chartElements) < 20)
-    	{
+    	if (sizeof($chartElements) < 20) {
     		$amountOfNewMovies = 20 - sizeof($chartElements);
+            
     		for ($i=0; $i < $amountOfNewMovies; $i++) { 
 				$movie = $this->movieRepo->generateComputerMovie();
                 
 				$newChartElement = new ChartElement();
 				$movie = $this->movieRepo->calculateProgress($movie);
 
-				$newChartElement->setAttributes($movie, 0, $movie->getRoundIncomeAttribute(), false);
+				$newChartElement->setAttributes($movie, 0, $movie->getRoundIncomeAttribute(), false, 'active');
 				array_push($chartElements, $newChartElement);
 			}
     	}

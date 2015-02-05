@@ -13,10 +13,11 @@ class PayBackLoanCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
+        $currentPlayer = Session::get('game.currentPlayer');
     	// add amount to loan
-    	Session::set('player.loan', ( Session::get('player.loan') - $command->amount ));
-    	// and amount to money
-    	Session::set('player.money', ( Session::get('player.money') - $command->amount));
+        $currentPlayer->payBackLoan($command->amount);
+
+        return $currentPlayer->getLoanAttribute();
     }
 
 }

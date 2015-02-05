@@ -14,16 +14,19 @@ class IncreaseMovieRoundCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        // increase the round count of player movies
-    	foreach (Session::get('player.movies') as $movie) 
-    	{
-    		$movie->increaseRounds();
-    	}
+        foreach ($command->players as $player) {
+            // increase the round count of player movies
+        	foreach ($player->getMoviesAttribute() as $movie) 
+        	{
+        		$movie->increaseRounds();
+        	}
+        }
 
         // increase the round count of non-human movies in charts
         $charts = Session::get('charts');
         foreach ($charts['positions'] as $chartElement) {
-            $chartElement->movie->increaseRounds();
+            if (!$chartElement->belongsToPlayer)
+                $chartElement->movie->increaseRounds();
         }
     }
 

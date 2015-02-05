@@ -1,5 +1,7 @@
 <?php
 
+use MovBizz\Movies\GetOverviewMoviesCommand;
+
 class MovieController extends \BaseController {
 
 	/**
@@ -10,14 +12,7 @@ class MovieController extends \BaseController {
 	 */
 	public function showOverview()
 	{
-		$movies = [];
-		if (sizeof(Session::get('player.movies')) > 0) 
-		{
-			foreach (Session::get('player.movies') as $movie) {
-				if ($movie->status != 0)
-					array_push($movies, $movie);
-			}
-		}
+		$movies = $this->execute(GetOverviewMoviesCommand::class, array_add([], 'player', Session::get('game.currentPlayer')));
 		return View::make('movies.overview', compact('movies'));
 	}
 
@@ -27,8 +22,7 @@ class MovieController extends \BaseController {
 	 */
 	public function showIncomeCosts()
 	{
-		$movies = Session::get('player.movies');
-
+		$movies = Session::get('game.currentPlayer')->getMoviesAttribute();
 		return View::make('movies.finance', compact('movies'));
 	}
 }

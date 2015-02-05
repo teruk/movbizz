@@ -18,6 +18,12 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 
+		if (Session::has('game.currentPlayer'))
+			View::share('currentPlayer', Session::get('game.currentPlayer'));
+
+		if (Session::has('game.availablePlayers'))
+			View::share('playersLeft', sizeof(Session::get('game.availablePlayers')));
+
 		if (Session::has('player.name'))
 			View::share('playerName', Session::get('player.name'));
 

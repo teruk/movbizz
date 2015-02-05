@@ -9,11 +9,15 @@
 			<h4><u>Award winners:</u></h4>
 			
 			@if (sizeof($winners) > 0)
-				<ul class="list-unstyled">
-					@foreach ($winners as $winner)
-						<li>{{ $winner->title }}</li>
-					@endforeach
-				</ul>
+				<table class="table table-condensed">
+					<tbody>
+						@foreach ($winners as $winner)
+							<tr class={{ $winner['backgroundColor'] }}>
+								<td>{{ $winner['movie']->title }}</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
 			@else
 				<p><i>No movie was good enough!</i></p>
 			@endif

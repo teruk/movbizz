@@ -13,10 +13,10 @@ class PayInterestCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-		$interest = floor( Session::get('player.loan') * Session::get('game.credit_rate') / 100);
-		Session::put('loan.interest', $interest);
-
-		Session::set('player.money', Session::get('player.money') - $interest);
+        foreach ($command->players as $player) {
+            $interest = floor( $player->getLoanAttribute() * Session::get('game.creditRate') / 100);
+            $player->payMoney($interest);
+        }
     }
 
 }

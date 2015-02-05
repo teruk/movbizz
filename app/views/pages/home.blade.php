@@ -7,7 +7,7 @@
 
 		<br>
 		<p><i>Be aware that the current version of the game is an early version and many features are missing!</i></p>
-		{{ link_to_route('startNewGame_path', 'Start a new game!', null, ['class' => 'btn btn-success']) }}
+		{{ link_to_route('selectNumberOfPlayers_path', 'Start a new game!', null, ['class' => 'btn btn-success']) }}
 
 		<br><br>
 		<div class="col-md-6">

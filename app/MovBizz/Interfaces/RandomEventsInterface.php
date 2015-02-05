@@ -2,5 +2,5 @@
 
 interface RandomEventsInterface
 {
-	public function run();
+	public function run($player);
 }

@@ -13,22 +13,26 @@ class CalculateAwardsCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-    	$awardCandidates = Session::get('player.awardCandidates');
     	$winners = [];
+        $prizeMoney = 1000000;
 
-    	foreach ($awardCandidates as $candidate) {
-    		if ($candidate->getQualityAttribute() > 90) {
-    			array_push($winners, $candidate);
-    			Session::set('player.money', (Session::get('player.money') + 1000000));
-    			$candidate->income += 1000000;
+        foreach ($command->players as $player) {
+            
+            foreach ($player->getAwardCandidatesAttribute() as $candidate) {
+                if ($candidate->getQualityAttribute() > 90) {
+                    array_push($winners, ['movie' => $candidate, 'backgroundColor' => $player->getBgColorAttribute()]);
+                    $player->addMoney($prizeMoney);
+                    $candidate->increaseIncome($prizeMoney);
 
-    			// popularity boost
-    			if ($candidate->getStatusAttribute() == 0)
-    				$candidate->increasePopularity(25);
-    		}
-    	}
+                    if (!$candidate->hasStatusInArchive()) {
+                        $candidate->increasePopularity(25);
+                    }
+                }
+            }
 
-    	Session::set('player.awardCandidates', []);
+            $player->resetAwardCandidates();
+        }
+
     	Session::set('awards.winners', $winners);
     }
 

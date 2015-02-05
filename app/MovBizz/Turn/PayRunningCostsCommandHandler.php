@@ -15,25 +15,25 @@ class PayRunningCostsCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-    	// look through the movie array which is in production
-    	foreach (Session::get('player.movies') as $movie) {
-    		if ($movie->getStatusAttribute() == 0)
-    		{
-    			$movie->setRunningCosts( floor($movie->getCostAttribute() * (rand(201, 299) / 10000) ) );
+        foreach ($command->players as $player) {
+        	// look through the movie array which is in production
+        	foreach ($player->getMoviesAttribute() as $movie) {
+                
+        		if ($movie->hasStatusInProduction()) {
+        			$movie->setRunningCosts( floor($movie->getCostAttribute() * (rand(201, 299) / 10000) ) );
 
-    			Session::set('player.money', Session::get('player.money') - $movie->runningCosts);
-    			$movie->addCosts($movie->runningCosts);
+                    $player->payMoney($movie->getRunningCosts);
+        			$movie->addCosts($movie->runningCosts);
 
-    			if ($movie->getRoundAttribute() == 0) {
-    				$movie->setStatusToInCharts();
-                    $awardCandidates = Session::get('player.awardCandidates');
-                    array_push($awardCandidates, $movie);
-                    Session::set('player.awardCandidates', $awardCandidates);
+        			if ($movie->getRoundAttribute() == 0) {
+        				$movie->setStatusToInCharts();
+                        $player->addAwardCandidate($movie);
 
-                    Event::fire('stats.producedMovies');
-                }
-    		}
-    	}
+                        Event::fire('stats.producedMovies');
+                    }
+        		}
+        	}
+        }
     }
 
 }

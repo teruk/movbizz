@@ -25,16 +25,16 @@ class CalculateIncomeCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-    	foreach (Session::get('player.movies') as $movie) 
-    	{
+        foreach ($command->players as $player) {
+            
+        	foreach ($player->getMoviesAttribute() as $movie) {
 
-    		if ($movie->status == 1)
-    		{
-    			$movie = $this->movieRepo->calculateProgress($movie);
-
-    			Session::set('player.money', (Session::get('player.money') + $movie->roundIncome));
-    		}
-    	}
+        		if ($movie->hasStatusInCharts()) {
+        			$movie = $this->movieRepo->calculateProgress($movie);
+                    $player->addMoney($movie->roundIncome);
+        		}
+        	}
+        }
     }
 
 }

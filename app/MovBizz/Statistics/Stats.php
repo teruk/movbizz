@@ -38,7 +38,7 @@ class Stats
 	public function increaseLotteryWinnings($winnings)
 	{
 		$statistic = $this->statisticRepo->findByName('lotteryWinnings');
-		$statistic->setValueAttribute( $this->getValueAttribute() + $winnings);
+		$statistic->setValueAttribute( $statistic->getValueAttribute() + $winnings);
 		$statistic->save();
 	}
 
