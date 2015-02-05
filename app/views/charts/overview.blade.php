@@ -24,9 +24,7 @@
 							<tr class="active">
 						@endif
 							<td>{{ $chartElement->getCurrentPositionAttribute() }}</td>
-							<td>
-								{{ $chartElement->getMovieAttribute()->getTitleAttribute() }}
-							</td>
+							<td>{{ $chartElement->getMovieAttribute()->getTitleAttribute() }}</td>
 							<td class="td-costs">{{ $chartElement->getIncomeAttribute() }}</td>
 						</tr>
 					@endforeach
@@ -34,7 +32,7 @@
 
 				<tfoot>
 					<tr>
-						<td colspan="4" class="td-footer">
+						<td colspan="3" class="td-footer">
 							{{ link_to_route('menu_path', 'Go back', null, ['class' => 'btn btn-sm btn-default'])}}
 						</td>
 					</tr>

@@ -4,7 +4,7 @@
 	@include('game.partials.header')
 
 	<div class="row">
-		<div class="col-md-5 movie-production">
+		<div class="col-sm-5 movie-production">
 			<h4>Step 3: Select director!</h4>
 
 			@unless($directors->isEmpty())
