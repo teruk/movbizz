@@ -13,7 +13,9 @@ class RandomEventRepository
 		'randomEvent.drugs',
 		'randomEvent.lottery',
 		'randomEvent.talkshow',
-		'randomEvent.fastWork'
+		'randomEvent.fastWork',
+		'randomEvent.talkshowNegative',
+		'randomEvent.illness'
 		];
 
 	/**

@@ -36,7 +36,6 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<br><b>Share your thoughts about MovBizz:</b>
 			@include('pages.partials.disqus')
 		</div>
 	</div>

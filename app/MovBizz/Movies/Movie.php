@@ -127,7 +127,17 @@ class Movie extends Eloquent implements QualityInterface {
 	 */
 	public function increasePopularity($popularity)
 	{
-		$this->attributes['popularity'] = $this->getQualityAttribute() + $popularity;
+		$this->attributes['popularity'] += $popularity;
+	}
+
+	/**
+	 * decrease the popularity of a movie
+	 * @param  [type] $populartiy [description]
+	 * @return [type]             [description]
+	 */
+	public function decreasePopularity($populartiy)
+	{
+		$this->attributes['popularity'] -= $popularity;
 	}
 
 	/**

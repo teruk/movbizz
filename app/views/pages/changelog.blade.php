@@ -8,6 +8,9 @@
 			<p><b>Game:</b></p>
 			<ul>
 				<li>Added local multiplayer feature: play with up to 5 people</li>
+				<li>Adjusted output of advertisment</li>
+				<li>Adjusted calculation of movie quality and start popularity</li>
+				<li>Added new random Events</li>
 			</ul>
 
 			<p><b>Technical:</b></p>
