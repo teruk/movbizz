@@ -33,7 +33,8 @@ You can try it [here](http://movbizz.sebbmeyer.de)
 2. Clone [this](https://github.com/teruk/movbizz) repository
 3. Run composer update
 4. Edit settings for database connection (by creating .env.*.php, or environment variables)
-5. Seed the database
+5. Run php artisan migrate
+6. Run php db:seed for dummy entries
 
 ### Licence
 
