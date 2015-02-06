@@ -7,7 +7,7 @@
 			<p>Choose the number players!</p>
 
 			@for ($i = 1; $i <= 5; $i++)
-				<div class="col-md-1">
+				<div class="col-xs-1">
 					{{ Form::open(['route' => 'chooseNumberOfPlayers_path'])}}
 
 					<div class="form-group">
