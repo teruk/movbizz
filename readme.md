@@ -4,7 +4,7 @@ MovBizz
 
 This game is a remake of the C64 game Movie Business. It is a text based game where you choose an actor, a director and a location for your movie. You can advertise your movie in the paper, in the radio or on tv. Create a movie that wins awards and fills your moneybag! But be careful random events can influence your movie production in both, a positive and a negative, way.
 
-This game is based on [Laravel](http://laravel.com) and [Twitter Bootstrap](http://getbootstrap.com)
+This game is based on [Laravel 4.2](http://laravel.com) and [Twitter Bootstrap](http://getbootstrap.com)
 
 ### Demo
 
@@ -26,6 +26,14 @@ You can try it [here](http://movbizz.sebbmeyer.de)
 ### Development notes
 
 [Gulp](http://gulpjs.com/) was used to autoprefix the /public/css/main.css file. Gulpfile.js is included.
+
+### How to install
+
+1. Install [composer](https://getcomposer.org/)
+2. Clone [this](https://github.com/teruk/movbizz) repository
+3. Run composer update
+4. Edit settings for database connection (by creating .env.*.php, or environment variables)
+5. Seed the database
 
 ### Licence
 
