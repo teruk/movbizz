@@ -36,10 +36,10 @@ class Talkshow implements RandomEventsInterface
 
 				$actor = $this->actorRepo->findById($selectedMovie->getActorIdAttribute());
 
-				$player->setEventAttribute($actor->present()->name."'s appearance on a well-know talkshow increased the popularity of ".$selectedMovie->getTitleAttribute() .".");
+				$player->setEvent($actor->present()->name."'s appearance on a well-know talkshow increased the popularity of ".$selectedMovie->getTitleAttribute() .".");
 			}
 
 		}
-		$player->setEventAttribute("Nothing special happened this round.");
+		$player->setEvent("Nothing special happened this round.");
 	}
 }

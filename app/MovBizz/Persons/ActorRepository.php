@@ -59,7 +59,7 @@ class ActorRepository implements PaginateInterface, FindInterface, CalculateInte
 
 		$newWage = round($actor->wage * ( 1 + ( ( mt_rand(0, ( 1 + $diff )) / 100 ) * $sign ) ));
 
-		$actor->setWageAttribute($newWage);
+		$actor->setWage($newWage);
 
 		return $actor;
 	}

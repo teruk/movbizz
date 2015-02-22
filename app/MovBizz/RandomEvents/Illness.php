@@ -37,11 +37,11 @@ class Illness implements RandomEventsInterface
 				$actor = $this->actorRepo->findById($selectedMovie->getActorIdAttribute());
 
 				Event::fire('stats.drugUse');
-				$player->setEventAttribute('It is rumoured that '.$actor->present()->name.' is ill. The production of '.$selectedMovie->getTitleAttribute()
+				$player->setEvent('It is rumoured that '.$actor->present()->name.' is ill. The production of '.$selectedMovie->getTitleAttribute()
 					.' is delayed.');
 			}
 
 		}
-		$player->setEventAttribute("Nothing special happened this round.");
+		$player->setEvent("Nothing special happened this round.");
 	}
 }

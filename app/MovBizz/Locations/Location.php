@@ -21,7 +21,7 @@ class Location extends Eloquent implements QualityInterface
 	 * set the attribute rent
 	 * @param [type] $newRent [description]
 	 */
-	public function setRentAttribute($newRent)
+	public function setRent($newRent)
 	{
 		$this->attributes['rent'] = $newRent;
 	}

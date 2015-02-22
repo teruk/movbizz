@@ -40,11 +40,11 @@ class Drugs implements RandomEventsInterface
 				$actor = $this->actorRepo->findById($selectedMovie->getActorIdAttribute());
 
 				Event::fire('stats.drugUse');
-				$player->setEventAttribute($actor->present()->name." had a drug incident. The Production of ".$selectedMovie->getTitleAttribute()
+				$player->setEvent($actor->present()->name." had a drug incident. The Production of ".$selectedMovie->getTitleAttribute()
 					." is delayed for ".$decreaseRounds." months.");
 			}
 
 		}
-		$player->setEventAttribute("Nothing special happened this round.");
+		$player->setEvent("Nothing special happened this round.");
 	}
 }

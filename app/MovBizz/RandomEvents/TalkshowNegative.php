@@ -36,10 +36,10 @@ class TalkshowNegative implements RandomEventsInterface
 
 				$actor = $this->directorRepo->findById($selectedMovie->getDirectorIdAttribute());
 
-				$player->setEventAttribute($actor->present()->name." was criticised for the upcoming movie ".$selectedMovie->getTitleAttribute() .".");
+				$player->setEvent($actor->present()->name." was criticised for the upcoming movie ".$selectedMovie->getTitleAttribute() .".");
 			}
 
 		}
-		$player->setEventAttribute("Nothing special happened this round.");
+		$player->setEvent("Nothing special happened this round.");
 	}
 }

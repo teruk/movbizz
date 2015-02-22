@@ -29,11 +29,11 @@ class FastWork implements RandomEventsInterface
 			if ($selectedMovie->getRoundAttribute() < (-1)) {
 				$selectedMovie->increaseRounds();
 
-				$player->setEventAttribute("The production of ". $selectedMovie->getTitleAttribute() ." is going well. It will take less time than anticipated to finisch this movie.");
+				$player->setEvent("The production of ". $selectedMovie->getTitleAttribute() ." is going well. It will take less time than anticipated to finisch this movie.");
 			}
 
 		}
 
-		$player->setEventAttribute("Nothing special happened this round.");
+		$player->setEvent("Nothing special happened this round.");
 	}
 }

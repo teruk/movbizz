@@ -31,7 +31,7 @@ class Director extends Eloquent implements PersonInterface, QualityInterface
 	 * set the attribute wage
 	 * @param [type] $newWage [description]
 	 */
-	public function setWageAttribute($newWage)
+	public function setWage($newWage)
 	{
 		$this->attributes['wage'] = $newWage;
 	}

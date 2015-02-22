@@ -25,7 +25,7 @@ class RunRandomEventCommandHandler implements CommandHandler {
             if (mt_rand(1, 25) == 1) 
                 Event::fire($this->randomEventRepo->getRandomEvent(), [$player]);
             else
-                $player->setEventAttribute( 'Nothing special happened this round.' );
+                $player->setEvent( 'Nothing special happened this round.' );
         }
     }
 

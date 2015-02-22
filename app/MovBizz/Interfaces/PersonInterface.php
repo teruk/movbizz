@@ -6,5 +6,5 @@ interface PersonInterface {
 	 * set the attribute wage
 	 * @param [type] $newWage [description]
 	 */
-	public function setWageAttribute($newWage);
+	public function setWage($newWage);
 }

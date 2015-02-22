@@ -58,7 +58,7 @@ class LocationRepository implements PaginateInterface, FindInterface, CalculateI
 		$diff = abs($diff);
 
 		$newRent = round($location->rent * ( 1 + ( ( mt_rand(1, ( 1 + $diff )) / 100 ) * $sign ) ));
-		$location->setRentAttribute($newRent);
+		$location->setRent($newRent);
 
 		return $location;
 	}

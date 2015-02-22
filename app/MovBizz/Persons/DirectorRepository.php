@@ -59,7 +59,7 @@ class DirectorRepository implements PaginateInterface, FindInterface, CalculateI
 
 		$newWage = round($director->wage * ( 1 + ( ( mt_rand(1, ( 6 + $diff )) / 100 ) * $sign ) ));
 
-		$director->setWageAttribute($newWage);
+		$director->setWage($newWage);
 
 		return $director;
 	}

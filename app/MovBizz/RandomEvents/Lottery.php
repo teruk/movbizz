@@ -25,6 +25,6 @@ class Lottery implements RandomEventsInterface
 		$player->addMoney($winnings);
 
 		Event::fire('stats.lotteryWinnings', [$winnings]);
-		$player->setEventAttribute($player->getNameAttribute().' won '.$winnings.'€ in the lottery. Congratulations!');
+		$player->setEvent($player->getNameAttribute().' won '.$winnings.'€ in the lottery. Congratulations!');
 	}
 }

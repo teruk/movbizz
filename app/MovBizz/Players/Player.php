@@ -183,7 +183,7 @@ class Player
 	 * set event attribute
 	 * @param [type] $message [description]
 	 */
-	public function setEventAttribute($message)
+	public function setEvent($message)
 	{
 		$this->attributes['event'] = $message;
 	}
