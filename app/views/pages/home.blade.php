@@ -30,6 +30,7 @@
 				<li>Adjust movie income, advertise impact on movie and movie quality calculation</li>
 				<li>Adjust long-term development of actor, director and location costs</li>
 				<li>Localisation</li>
+				<li>Adjust design for small screens (smartphones, tablet, ...)</li>
 			</ul>
 		</div>
 	</div>
