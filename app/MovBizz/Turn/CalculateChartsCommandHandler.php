@@ -65,7 +65,7 @@ class CalculateChartsCommandHandler implements CommandHandler {
 				$movie = $this->movieRepo->generateComputerMovie();
                 
 				$newChartElement = new ChartElement();
-				$movie = $this->movieRepo->calculateProgress($movie);
+				$this->movieRepo->calculateProgress($movie);
 
 				$newChartElement->setAttributes($movie, 0, $movie->getRoundIncomeAttribute(), false);
 				array_push($chartElements, $newChartElement);

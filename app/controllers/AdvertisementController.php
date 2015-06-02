@@ -57,8 +57,10 @@ class AdvertisementController extends \BaseController {
 		$input = Input::all();
 
 		// if everey input is 0, then redirect back
-		if ($this->execute(CheckInputCommand::class, $input))
-			return Redirect::back();
+		if ($this->execute(CheckInputCommand::class, $input)) {
+			Flash::error("You didn't choose any advertisment!");
+			return Redirect::route('advertisement_path');
+		}
 
 		// advertise movie
 		if ($this->execute(AdvertiseMovieCommand::class, $input))
@@ -68,6 +70,6 @@ class AdvertisementController extends \BaseController {
 		}
 
 		Flash::error("You don't have enough money!");
-		return Redirect::back();
+		return Redirect::route('advertisement_path');
 	}
 }

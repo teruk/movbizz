@@ -8,6 +8,7 @@
 		"laravel/framework": "4.2.*",
 		"laracasts/commander": "~1.0",
 		"laracasts/flash": "~1.0",
+		"laracasts/validation": "~1.0",
         "laracasts/presenter": "0.1.*",
         "fzaninotto/faker": "v1.4.0"
 	},
